@@ -51,18 +51,18 @@ public:
 		nodes[idx<<1|1].lazy += nodes[idx].lazy;
 		nodes[idx].lazy=0;
 	}
-	void query(int l, int r, int idx, int a, int b){
+	Node query(int l, int r, int idx, int a, int b){
 		if(l==a && r==b){
 			return nodes[idx];
 		}
 		int mid = (l+r)>>1;
 		if(b<=mid){
-			return query(l, mid, idx<<1, ,a, b);
+			return query(l, mid, idx<<1, a, b);
 		}
 		if(a>mid){
-			return query(mid+1, r, idx<<1|1, ,a, b);			
+			return query(mid+1, r, idx<<1|1, a, b);			
 		}
-		return merge(query(l, mid, idx<<1, ,a, mid), query(mid+1, r, idx<<1|1, ,mid+1, b));
+		return merge(query(l, mid, idx<<1, a, mid), query(mid+1, r, idx<<1|1, ,mid+1, b));
 	}
 	void update(int l, int r, int idx, int a, int b){
 		if(l==a && r==b){
@@ -72,14 +72,14 @@ public:
 		percolate(idx);
 		int mid = (l+r)>>1;
 		if(b<=mid){
-			update(l, mid, idx<<1, ,a, b);
+			update(l, mid, idx<<1, a, b);
 		}
 		else if(a>mid){
-			update(mid+1, r, idx<<1|1, ,a, b);			
+			update(mid+1, r, idx<<1|1, a, b);			
 		}
 		else{
-			update(l, mid, idx<<1, ,a, mid);
-			update(mid+1, r, idx<<1|1, ,mid+1, b);
+			update(l, mid, idx<<1, a, mid);
+			update(mid+1, r, idx<<1|1, mid+1, b);
 		}
 		nodes[idx] = merge(nodes[idx<<1], nodes[idx<<1|1]);		
 	}
@@ -92,10 +92,10 @@ public:
 		percolate(idx);
 		int mid = (l+r)>>1;
 		if(a<=mid){
-			update_1(l, mid, idx<<1, ,a, new_data);
+			update_1(l, mid, idx<<1, a, new_data);
 		}
 		else{
-			update_1(mid+1, r, idx<<1|1, ,a, new_data);			
+			update_1(mid+1, r, idx<<1|1, a, new_data);			
 		}
 		nodes[idx] = merge(nodes[idx<<1], nodes[idx<<1|1]);	
 	}
