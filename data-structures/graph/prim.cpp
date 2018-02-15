@@ -1,3 +1,6 @@
+//Prim's algorithm
+//Here priority queue library function is actually MAXIMUM binary heap kind
+
 #include <iostream>
 #include <vector>
 #include <queue>
@@ -14,7 +17,7 @@ void process(int v)
 		ii temp = adj[v][i];
 		if(visited[temp.first] == 0)
 		{
-			p.push(ii(-temp.second, -temp.first));
+			p.push(ii(-temp.second, -temp.first));				// Negative because priority queue is max priority queue
 		}
 	}
 }

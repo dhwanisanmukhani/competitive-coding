@@ -14,14 +14,14 @@ void printp(int n)
 
 int main()
 {
-	int vertices, edges, a, b, c;
+	int vertices, edges, a, b, w;
 	cin >>vertices >>edges;
 	vector< vector<ii> > adj(vertices+1);
 	for (int i = 0; i < edges; ++i)
 	{
-		cin >>a >>b >>c;
-		adj[a].push_back(make_pair(b, c));
-		adj[b].push_back(make_pair(a, c));
+		cin >>a >>b >>w;
+		adj[a].push_back(make_pair(b, w));
+		adj[b].push_back(make_pair(a, w));
 	}
 	vector<int> dist(vertices+1, 1e18);
 	dist[1] = 0;
@@ -49,8 +49,7 @@ int main()
 	}
 	if(dist[vertices] == 1e18)
 			cout<<"-1"<<endl;
-		else
-		{
-			printp(vertices);
-		}
+	else{
+		printp(vertices);
+	}
 }
